@@ -3,7 +3,10 @@ import classes from '../../Containers/App.module.css';
 const Cockpit = props => {
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
-  });
+    setTimeout(() => {
+      alert('Data saved to the cloud.');
+    }, 1000);
+  }, [props.persons]);
   const btnClass = [classes.Button];
   if (props.persons) {
     btnClass.push(classes.Red);
