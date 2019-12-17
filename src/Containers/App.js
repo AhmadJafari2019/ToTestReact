@@ -4,6 +4,10 @@ import classes from './App.module.css';
 import Cockpit from '../Components/Cockpit/Cockpit';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] Constructor');
+  }
   state = {
     persons: [
       { id: 'id1', name: 'Ali', age: 20 },
@@ -75,9 +79,10 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <Cockpit clicked={this.toggleHandlerPerson}
-        persons={this.state.showPersons}
-         />
+        <Cockpit
+          clicked={this.toggleHandlerPerson}
+          persons={this.state.showPersons}
+        />
         {/* <h1>React App</h1>
         <button
           className={btnClass.join(' ')}
