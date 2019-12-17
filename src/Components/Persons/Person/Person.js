@@ -2,6 +2,7 @@ import React from 'react';
 import classes from '../../../Containers/App.module.css';
 
 const Person = props => {
+  console.log('[Person.js] is Rendering');
   const assignedClasses = [];
   if (props.test <= 2) {
     assignedClasses.push(classes.red);
@@ -15,7 +16,12 @@ const Person = props => {
       <p onClick={props.click}>
         I am {props.name} and i am {props.age} years old.
       </p>
-      <input type="text" onChange={props.changed} value={props.name} className={classes.input}/>
+      <input
+        type="text"
+        onChange={props.changed}
+        value={props.name}
+        className={classes.input}
+      />
     </div>
   );
 };

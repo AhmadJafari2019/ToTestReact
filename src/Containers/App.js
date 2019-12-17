@@ -16,6 +16,18 @@ class App extends Component {
     ],
     showPersons: false
   };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDrivedStateFromProps]', props);
+    return state;
+  }
+  componentWillMount() {
+    console.log('[App.js]ComponentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('[App.js] ComponentDidMount');
+  }
   toggleHandlerPerson = () => {
     const doesShow = this.state.showPersons;
     this.setState({
@@ -48,6 +60,7 @@ class App extends Component {
   };
 
   render() {
+    console.log('[App.js] Rendering....');
     let persons = null;
 
     if (this.state.showPersons) {
@@ -80,6 +93,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <Cockpit
+          title={this.props.appTitle}
           clicked={this.toggleHandlerPerson}
           persons={this.state.showPersons}
         />
