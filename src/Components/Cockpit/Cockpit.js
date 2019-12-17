@@ -6,7 +6,11 @@ const Cockpit = props => {
     setTimeout(() => {
       alert('Data saved to the cloud.');
     }, 1000);
-  }, [props.persons]);
+    return () => {
+      console.log('[Cockpit.js] Clean Up working.');
+    };
+  }, []);
+
   const btnClass = [classes.Button];
   if (props.persons) {
     btnClass.push(classes.Red);

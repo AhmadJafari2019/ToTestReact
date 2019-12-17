@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from '../../../Containers/App.module.css';
-
+// import Aux from '../../Auxiliary/Aux';
 class Person extends Component {
   render() {
     console.log('[Person.js] is Rendering');
@@ -12,7 +12,9 @@ class Person extends Component {
       assignedClasses.push(classes.bold);
     }
     return (
-      <div className={classes.Person}>
+      <React.Fragment>
+        {/* <div className={classes.Person}> */}
+
         <p className={assignedClasses.join(' ')}>This is really Working.</p>
         <p onClick={this.props.click}>
           I am {this.props.name} and i am {this.props.age} years old.
@@ -23,7 +25,8 @@ class Person extends Component {
           value={this.props.name}
           className={classes.input}
         />
-      </div>
+        {/* </div> */}
+      </React.Fragment>
     );
   }
 }
