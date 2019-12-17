@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from '../../../Containers/App.module.css';
-// import Aux from '../../Auxiliary/Aux';
+// import Aux from '../../hoc/Aux';
 class Person extends Component {
   render() {
     console.log('[Person.js] is Rendering');
