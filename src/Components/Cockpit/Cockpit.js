@@ -29,6 +29,9 @@ const Cockpit = props => {
       >
         Toggle Person
       </button>
+      <button className={classes.Button} onClick={props.login}>
+        Log in
+      </button>
     </div>
   );
 };

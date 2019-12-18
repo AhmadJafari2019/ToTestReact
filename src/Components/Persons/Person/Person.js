@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classes from '../../../Containers/App.module.css';
 import withClass from '../../hoc/withClass';
 import propTypes from 'prop-types';
-// import Aux from '../../hoc/Aux';
+ import Aux from '../../hoc/Aux';
 class Person extends Component {
   constructor(props) {
     super(props);
@@ -21,13 +21,18 @@ class Person extends Component {
       assignedClasses.push(classes.bold);
     }
     return (
-      <React.Fragment>
+      <Aux>
         {/* <div className={classes.Person}> */}
-
+        {this.props.isAuth ? (
+          <p>Authenticated!!!</p>
+        ) : (
+          <p>Please try to login.</p>
+        )}
         <p className={assignedClasses.join(' ')}>This is really Working.</p>
         <p onClick={this.props.click}>
           I am {this.props.name} and i am {this.props.age} years old.
         </p>
+
         <input
           type="text"
           onChange={this.props.changed}
@@ -38,7 +43,7 @@ class Person extends Component {
           ref={this.inputElementRef}
         />
         {/* </div> */}
-      </React.Fragment>
+      </Aux>
     );
   }
 }

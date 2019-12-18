@@ -10,7 +10,12 @@ class Persons extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[Persons.js] shouldComponentUpdate');
     // return true;
-    if (nextProps.persons !== this.props.persons) {
+    if (
+      nextProps.persons !== this.props.persons ||
+      nextProps.changed !== this.props.changed ||
+      nextProps.clicked !== this.props.clicked ||
+      nextProps.isAuthenticated !== this.props.isAuthenticated
+    ) {
       return true;
     } else {
       return false;
@@ -41,6 +46,7 @@ class Persons extends Component {
           key={person.id}
           changed={event => this.props.changed(event, person.id)}
           test={this.props.persons.length}
+          isAuth={this.props.isAuthenticated}
         />
       );
     });
