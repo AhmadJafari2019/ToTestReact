@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import classes from '../../../Containers/App.module.css';
 import withClass from '../../hoc/withClass';
 import propTypes from 'prop-types';
- import Aux from '../../hoc/Aux';
+import Aux from '../../hoc/Aux';
+import AuthContext from './../../Context/Auth-context';
 class Person extends Component {
   constructor(props) {
     super(props);
@@ -22,12 +23,11 @@ class Person extends Component {
     }
     return (
       <Aux>
+        <AuthContext.Consumer>
+          {(context) => context.authentication? <p>Authentication is Working.</p> : <p>Please Login again</p>}
+        </AuthContext.Consumer>
         {/* <div className={classes.Person}> */}
-        {this.props.isAuth ? (
-          <p>Authenticated!!!</p>
-        ) : (
-          <p>Please try to login.</p>
-        )}
+
         <p className={assignedClasses.join(' ')}>This is really Working.</p>
         <p onClick={this.props.click}>
           I am {this.props.name} and i am {this.props.age} years old.

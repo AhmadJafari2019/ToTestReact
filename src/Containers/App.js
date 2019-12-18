@@ -4,6 +4,8 @@ import classes from './App.module.css';
 import Cockpit from '../Components/Cockpit/Cockpit';
 import withClass from '../Components/hoc/withClass';
 import Aux from '../Components/hoc/Aux';
+import AuthContext from '../Components/Context/Auth-context';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,8 +19,8 @@ class App extends Component {
     ],
     showPersons: false,
     showCockpit: true,
-    changeCounter: 0, 
-    authentication: false,
+    changeCounter: 0,
+    authentication: false
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -75,9 +77,9 @@ class App extends Component {
       };
     });
   };
-loginHandler =()=>{
-  this.setState({authentication:true});
-}
+  loginHandler = () => {
+    this.setState({ authentication: true });
+  };
   render() {
     console.log('[App.js] Rendering....');
     let persons = null;
@@ -119,22 +121,28 @@ loginHandler =()=>{
         >
           Remove Cockpit
         </button>
-        {this.state.showCockpit ? (
-          <Cockpit
-            title={this.props.appTitle}
-            clicked={this.toggleHandlerPerson}
-            persons={this.state.showPersons}
-            login={this.loginHandler}
-          />
-        ) : null}
-        {/* <h1>React App</h1>
+        <AuthContext.Provider
+          value={{
+            authentication: this.state.authentication,
+            login: this.loginHandler
+          }}
+        >
+          {this.state.showCockpit ? (
+            <Cockpit
+              title={this.props.appTitle}
+              clicked={this.toggleHandlerPerson}
+              persons={this.state.showPersons}
+              // login={this.loginHandler}
+            />
+          ) : null}
+          {/* <h1>React App</h1>
         <button
           className={btnClass.join(' ')}
           onClick={this.toggleHandlerPerson}
         >
           Toggle Person
         </button> */}
-        {/* {this.state.showPersons ? (
+          {/* {this.state.showPersons ? (
           <div>
             <Header
               name={this.state.persons.name}
@@ -143,8 +151,8 @@ loginHandler =()=>{
             />
           </div>
         ) : null} */}
-        {persons}
-       
+          {persons}
+        </AuthContext.Provider>
       </Aux>
     );
   }
