@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import classes from '../../Containers/App.module.css';
 import AuthContext from '../Context/Auth-context';
 
 const Cockpit = props => {
   const toggleBtnRef = useRef(null);
+  const authContext = useContext(AuthContext);
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
     // setTimeout(() => {
@@ -31,13 +32,12 @@ const Cockpit = props => {
       >
         Toggle Person
       </button>
-      <AuthContext.Consumer>
-        {context => (
-          <button className={classes.Button} onClick={context.login}>
-            Log in
-          </button>
-        )}
-      </AuthContext.Consumer>
+
+     
+        <button className={classes.Button} onClick={authContext.login}>
+          Log in
+        </button>
+      )
     </div>
   );
 };
