@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import classes from '../../../Containers/App.module.css';
 import withClass from '../../hoc/withClass';
+import propTypes from 'prop-types';
 // import Aux from '../../hoc/Aux';
 class Person extends Component {
+  constructor(props) {
+    super(props);
+    this.inputElementRef = React.createRef();
+  }
+  componentDidMount() {
+    this.inputElementRef.current.focus();
+  }
   render() {
     console.log('[Person.js] is Rendering');
     const assignedClasses = [];
@@ -24,12 +32,22 @@ class Person extends Component {
           type="text"
           onChange={this.props.changed}
           value={this.props.name}
-          className={classes.input}
+          // ref={inputEl => {
+          //   this.inputElement = inputEl;
+          // }}
+          ref={this.inputElementRef}
         />
         {/* </div> */}
       </React.Fragment>
     );
   }
 }
+
+Person.propTypes = {
+  click: propTypes.func,
+  name: propTypes.string,
+  age: propTypes.number,
+  changed: propTypes.func
+};
 
 export default withClass(Person, classes.Person);
